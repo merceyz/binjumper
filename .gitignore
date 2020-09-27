@@ -2,6 +2,8 @@
 dist
 output
 
+tmp
+
 # Yarn 2
 .yarn/*
 !.yarn/releases

@@ -24,6 +24,10 @@ $
 
 This library works around that issue using a native executable (`.exe`) to perform the spawn
 
+## Example
+
+See the [`examples`](/examples) directory
+
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE).
