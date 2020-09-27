@@ -22,7 +22,7 @@ Terminate batch job (Y/N)? y
 $
 ```
 
-This library works around that issue using a native executable (`.exe`) to perform the spawn
+This library works around that issue using a native executable (`.exe`) to perform the spawn on Windows, Unix doesn't have this problem so there a simple bash script is used.
 
 ## Example
 

@@ -30,26 +30,40 @@ type JumperOptions = {
 };
 
 export async function makeBinjumper(opts: JumperOptions) {
-	const jumperData = getBinjumper();
-	const exeName = join(opts.dir, `${opts.name}.exe`);
-	const infoName = join(opts.dir, `${opts.name}.exe.info`);
-
 	const writeFilePromise = promisify(writeFile);
 	const mkdirPromise = promisify(mkdir);
 
 	await mkdirPromise(opts.dir, { recursive: true });
-	await Promise.all([
-		writeFilePromise(exeName, jumperData),
-		writeFilePromise(infoName, [opts.target, ...(opts.args || [])].join('\n')),
-	]);
+
+	if (process.platform === 'win32') {
+		await Promise.all([
+			writeFilePromise(join(opts.dir, `${opts.name}.exe`), getBinjumper()),
+			writeFilePromise(join(opts.dir, `${opts.name}.exe.info`), [opts.target, ...(opts.args || [])].join('\n')),
+		]);
+	}
+
+	await writeFilePromise(
+		join(opts.dir, opts.name),
+		`#!/bin/sh\nexec "${opts.target}" ${(opts.args || [])
+			.map((arg) => `'${arg.replace(/'/g, `'"'"'`)}'`)
+			.join(' ')} "$@"\n`,
+		{ mode: 0o755 }
+	);
 }
 
 export function makeBinjumperSync(opts: JumperOptions) {
-	const jumperData = getBinjumper();
-	const exeName = join(opts.dir, `${opts.name}.exe`);
-	const infoName = join(opts.dir, `${opts.name}.exe.info`);
-
 	mkdirSync(opts.dir, { recursive: true });
-	writeFileSync(exeName, jumperData);
-	writeFileSync(infoName, [opts.target, ...(opts.args || [])].join('\n'));
+
+	if (process.platform === 'win32') {
+		writeFileSync(join(opts.dir, `${opts.name}.exe`), getBinjumper());
+		writeFileSync(join(opts.dir, `${opts.name}.exe.info`), [opts.target, ...(opts.args || [])].join('\n'));
+	}
+
+	writeFileSync(
+		join(opts.dir, opts.name),
+		`#!/bin/sh\nexec "${opts.target}" ${(opts.args || [])
+			.map((arg) => `'${arg.replace(/'/g, `'"'"'`)}'`)
+			.join(' ')} "$@"\n`,
+		{ mode: 0o755 }
+	);
 }
