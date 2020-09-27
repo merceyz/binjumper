@@ -2,14 +2,14 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"target": "ES2018",
-		"lib": ["ESNext"],
+		"lib": ["ES2018"],
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"skipLibCheck": true,
 		"noEmit": true,
 		"outDir": "dist",
 		"strict": true,
-		"importHelpers": true
+		"declaration": true
 	},
 	"include": ["src"]
 }
