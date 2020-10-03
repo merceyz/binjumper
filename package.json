@@ -27,7 +27,7 @@
 	],
 	"scripts": {
 		"release": "standard-version",
-		"build": "mkdir -p output && gcc ./src/binjumper.c -Os -s -m32 -o ./output/binjumper.exe && ts-node ./scripts/generateJS.ts && tsc --noEmit false",
+		"build": "bash ./build.sh",
 		"prepack": "yarn build"
 	},
 	"devDependencies": {
