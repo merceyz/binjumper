@@ -9,7 +9,8 @@
 		"noEmit": true,
 		"outDir": "dist",
 		"strict": true,
-		"declaration": true
+		"declaration": true,
+		"newLine": "lf"
 	},
 	"include": ["src"]
 }
