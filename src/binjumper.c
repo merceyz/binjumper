@@ -163,12 +163,14 @@ int main(int argc, char **argv)
   // Wait until child process exits.
   WaitForSingleObject(pi.hProcess, INFINITE);
 
+  DWORD exitCode;
+  GetExitCodeProcess(pi.hProcess, &exitCode);
+
   // Close process and thread handles.
   CloseHandle(pi.hProcess);
   CloseHandle(pi.hThread);
 
   free(commandLine);
 
-  // Success
-  return 0;
+  return exitCode;
 }
