@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/merceyz/binjumper/compare/v0.1.2...v0.1.3) (2020-10-15)
+
+### Bug Fixes
+
+- return correct exit code ([cdf5ef7](https://github.com/merceyz/binjumper/commit/cdf5ef76434e7015312462bcd87752c6cdcd948c))
+
 ### [0.1.2](https://github.com/merceyz/binjumper/compare/v0.1.1...v0.1.2) (2020-10-03)
 
 ### Bug Fixes
