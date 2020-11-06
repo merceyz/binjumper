@@ -4,6 +4,11 @@
 #include <signal.h>
 #include <windows.h>
 
+// This binary is supposed to take the arguments it was spawned with
+// and pass them to another process so this line is required to
+// disable glob expansion in MinGW
+int _CRT_glob = 0;
+
 char *getInfoPath()
 {
   // Get the binary path
